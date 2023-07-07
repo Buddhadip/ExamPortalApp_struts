@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddQuestions</title>
+    <link rel="stylesheet" href="./addQuestion.css">
+</head>
+<body>
+    <div id="header">Exam code: E089</div>
+    <div>
+      
+        <form id="mcq-form">
+            <div class="question-container">
+                <h2 style="text-align: center;">ADD QUESTIONS</h2>
+            <div class="question-section">
+              <label for="question1">Question:</label>
+              <textarea  type="text" id="question1" name="q-text" placeholder="Enter the question" oninput="autoResizeTextarea(this)" required></textarea>
+              <input class="file-input" type="file" id="option-a-image" name="q-image" onchange="handleFileInputChange(this)">
+              <!-- <img id="preview-image" class="preview-image" src="" alt="Preview Image" /> -->
+            </div>
+              <div class="option">
+                <label for="option-a">Option A:</label>
+                <input type="text" id="option-a-text" name="option-a-text" placeholder="Enter option A" required>
+                <input type="file" id="option-a-image" name="option-a-image">
+              </div>
+        
+              <div class="option">
+                <label for="option-b">Option B:</label>
+                <input type="text" id="option-b-text" name="option-b-text" placeholder="Enter option B" required>
+                <input type="file" id="option-b-image" name="option-b-image">
+              </div>
+        
+              <div class="option">
+                <label for="option-c">Option C:</label>
+                <input type="text" id="option-c-text" name="option-c-text" placeholder="Enter option C" required>
+                <input type="file" id="option-c-image" name="option-c-image">
+              </div>
+        
+              <div class="option">
+                <label for="option-d">Option D:</label>
+                <input type="text" id="option-d-text" name="option-d-text" placeholder="Enter option D" required>
+                <input type="file" id="option-d-image" name="option-d-image">
+              </div>
+              <div>
+                <label for="answer">Correct answer</label>
+                <select name="answer" id="answer">
+                  <option value="a">Option A</option>
+                  <option value="b">Option B</option>
+                  <option value="c">Option C</option>
+                  <option value="d">Option D</option>
+                </select>
+                <button type="submit" class="submit-btn">Add Questions</button>
+            </div>
+            </div>
+
+            <!-- Add more question containers here -->
+        
+           
+          </form>
+    </div>
+    <div id="prev_problems">
+        <h2 style="text-align: center;">OTHER QUESTIONS</h2>
+        <div id="problem-section"></div>
+    </div>
+    <script src="./addQuestion.js"></script>
+</body>
+</html>

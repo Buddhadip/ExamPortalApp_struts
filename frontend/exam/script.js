@@ -129,19 +129,19 @@ for (let i = 0; i < quizData.length; i++) {
         <div class="question">
             <p class="qtext"> ${quizData[i].question} </p>
             <label>
-            <input type="radio" name="qs-${i+1}" onchange="handleRadioChange(${i+1})" />
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].a}" onchange="handleRadioChange(${i+1})" />
             <span>${quizData[i].a} </span>
             </label>
             <label>
-            <input type="radio" name="qs-${i+1}" onchange="handleRadioChange(${i+1})"/>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].b}" onchange="handleRadioChange(${i+1})"/>
             <span>${quizData[i].b} </span>
             </label>
             <label>
-            <input type="radio" name="qs-${i+1}" onchange="handleRadioChange(${i+1})"/>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].c}" onchange="handleRadioChange(${i+1})"/>
             <span>${quizData[i].c} </span>
             </label>
             <label>
-            <input type="radio" name="qs-${i+1}" onchange="handleRadioChange(${i+1})"/>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].d}" onchange="handleRadioChange(${i+1})"/>
             <span>${quizData[i].d} </span>
             </label>
         </div>
@@ -152,7 +152,7 @@ for (let i = 0; i < quizData.length; i++) {
         </div>
   `;
 }
-quiz_html += `<hr/><button class="change-button2" >Submit</button>`
+quiz_html += `<hr/><input type="submit" class="change-button2" />`
 quiz.innerHTML = quiz_html;
 
 var questionstate_global=1;
