@@ -121,10 +121,74 @@ body{
         overflow: hidden;
     }
 
+    .option-input{
+        width: 60vw;
+        min-height: 15px;
+        resize: vertical;
+        border-radius: 10px;
+        padding: 10px;
+        border: none;
+        border-bottom: #5c003a 4px solid;
+        overflow: hidden;
+    }
+
     .file-input::file-selector-button  {
         background-color: #0000e00a;
         padding: 5px 10px;
         font-size: 16px;
         border:  1px solid #32006f78;
         border-radius: 5px;
+    }
+    .round-option{
+      display:inline-block;
+      width:20px;
+      height:20px;
+      border-radius: 50%;
+      background-color: #00005c;
+      color: #d6d6e5;
+      text-align: center;
+    }
+
+    .option{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fffdfdbb;
+      padding: 10px;
+      border-bottom: 1px dashed #00005c;
+    }
+
+    .option-section{    
+      margin: 20px;
+    }
+
+    .correct-option{
+      background-color: #fffdfdbb;
+      color: #4d006a;
+      margin: 20px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20%;
+      margin: auto;
+      border-radius: 20px;
+    }
+    .custom-select {
+      position: relative;
+      font-family: Arial;
+      background-color: rgb(200, 227, 255);
+      padding: 10px;
+      border:none;
+      border-radius: 10px;
+      margin-left: 10px;
+    }
+    
+    .add-qs-button{
+      background-color: #6a6aff;
+      color: #d6d6e5;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: auto;
     }

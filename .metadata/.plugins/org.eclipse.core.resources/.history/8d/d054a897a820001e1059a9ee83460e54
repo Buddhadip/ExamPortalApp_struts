@@ -1,0 +1,8 @@
+package com.exam.form;
+
+public class UserForm {
+		private String name;
+		private String roll;
+		private String email;
+		
+}

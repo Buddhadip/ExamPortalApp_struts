@@ -1,0 +1,20 @@
+package com.exam.service;
+
+import java.util.ArrayList;
+
+import com.exam.form.UserForm;
+
+public class ReadCSV {
+	String fileContent;
+	public ReadCSV(String fileContent) {
+		this.fileContent=fileContent;
+	}
+	public ArrayList<UserForm> getData(){
+		ArrayList<UserForm> data = new ArrayList<UserForm>();
+		String[] lines=fileContent.split("\n")
+		
+		
+		return null;
+		
+	}
+}

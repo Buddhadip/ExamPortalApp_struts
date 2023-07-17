@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struts-config>
+<form-beans>
+		<form-bean
+			name="fileUploadForm"
+			type="com.exam.form.FileUploadForm"/>
+		</form-beans>
+		<form-bean name="LoginForm" type="com.exam.forms.LoginForm"/>
+	    <form-bean name="SignupForm" type="com.exam.forms.SignupForm"/>
+  <action-mappings>
+    <action path="/uploadCSV" type="com.exam.action.UploadCsvAction" name="fileUploadForm"
+			validate="true" scope="request">
+      
+    </action>
+  </action-mappings>
+
+
+</struts-config>
+ 

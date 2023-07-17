@@ -1,0 +1,8 @@
+package com.exam.service;
+
+public class ReadCSV {
+	String fileContent;
+	public ReadCSV(String fileContent) {
+		this.fileContent=fileContent;
+	}
+}

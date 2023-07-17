@@ -1,0 +1,63 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    background-color: #4070f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+.navbar h1{
+    text-align: center;
+}
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .student-table tr{
+    padding-left: 80px;
+  }
+
+  .student-table input[type="checkbox"] {
+    margin: 0;
+  }
+  .select-section{
+    width: 60%;
+    height: 400px;
+    margin: auto;
+    margin-top: 20px;
+    overflow-y: scroll;
+    border-radius: 20px 20px 0px 0px;
+    border:1px solid black;
+    background-color: #4070f423;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 40px;
+  }
+
+  .submit-button{
+    width: 66%;
+    margin: 0% 17%;
+    padding: 5px 10px;
+    border-radius: 0px 0px 20px 20px;
+    background-color: #4070f4c2;
+  }
+  .submit-button:hover{
+    background-color: #4070f4;
+    color: aliceblue;
+  }

@@ -1,0 +1,9 @@
+package com.exam.action;
+
+public class UploadCsvAction extends Action {
+	public ActionForward execute(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+	
+		}
+}
