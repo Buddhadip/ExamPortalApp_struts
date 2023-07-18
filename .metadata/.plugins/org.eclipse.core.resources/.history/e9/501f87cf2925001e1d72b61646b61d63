@@ -1,0 +1,121 @@
+package com.exam.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.exam.form.ExamForm;
+
+public class ExamDAO {
+
+    private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+
+    public ExamDAO() {
+        this.jdbcURL = "jdbc:mysql://localhost:3306/exam_master";
+        this.jdbcUsername = "root";
+        this.jdbcPassword = "buddhadipm";
+    }
+
+    // Establishes a database connection
+    protected void connect() throws SQLException {
+        if (conn == null || conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+    }
+
+    // Closes the database connection
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+    }
+    
+ // Retrieves all exams from the database
+    public List<ExamForm> getAllExam() throws SQLException {
+        List<ExamForm> exams = new ArrayList<>();
+
+        connect();
+
+        String query = "SELECT * FROM Exam";
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        while (resultSet.next()) {
+            int eid = resultSet.getInt("Eid");
+            String eTitle = resultSet.getString("ETitle");
+            int eDuration = resultSet.getInt("EDuration");
+            String eStart = resultSet.getString("EStart");
+            String eEnd = resultSet.getString("EEnd");
+
+            ExamForm exam = new ExamForm(eid, eTitle, eDuration, eStart, eEnd);
+            exams.add(exam);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        disconnect();
+
+        return exams;
+    }
+
+    // Updates an existing exam in the database
+    public void editExam(ExamForm examForm) throws SQLException, ParseException {
+        connect();
+
+        String query = "UPDATE Exam SET EDuration = ?, EStart = ?, EEnd = ? WHERE Eid = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(2, examForm.getEduration());
+        preparedStatement.setTimestamp(2, convertToTimestamp(examForm.getEstart()));
+        preparedStatement.setTimestamp(3, convertToTimestamp(examForm.getEend()));
+        preparedStatement.setInt(4, examForm.getEid());
+
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+
+        disconnect();
+    }
+
+    // Inserts a new exam into the database
+    public void insertExam(ExamForm examForm) throws SQLException, ParseException {
+        connect();
+
+        String query = "INSERT INTO Exam (Eid, ETitle, EDuration, EStart, EEnd) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, examForm.getEid());
+        preparedStatement.setString(2, examForm.getEtitle());
+        preparedStatement.setInt(3, examForm.getEduration());
+        preparedStatement.setTimestamp(4, convertToTimestamp(examForm.getEstart()));
+        preparedStatement.setTimestamp(5, convertToTimestamp(examForm.getEend()));
+
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+
+        disconnect();
+    }
+
+    // Method to convert string date to java.sql.Timestamp
+    private Timestamp convertToTimestamp(String dateString) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = dateFormat.parse(dateString);
+        return new Timestamp(date.getTime());
+    }
+    
+}

@@ -106,6 +106,37 @@ public class UserDAO {
 //	        }
 	    	return students;
 	    }
+	    public List<SignupForm> getAllStudentsExcludeAdmin() throws SQLException {
+	        List<SignupForm> students = new ArrayList<>();
+	        String sql = "SELECT * FROM User WHERE urole <> 'Admin'";
+	        connect();
+	        System.out.println("here");
+
+	        PreparedStatement statement = conn.prepareStatement(sql);
+	        
+
+	        ResultSet resultSet = statement.executeQuery();
+	        System.out.println("here2");
+	        while (resultSet.next()) {
+	        	String uid= resultSet.getString("uid");
+	            String uname = resultSet.getString("uname");
+	            String uroll = resultSet.getString("uroll");
+	            String urole = resultSet.getString("urole");
+	            String email = resultSet.getString("emailid");
+
+	            System.out.println(uname);
+	            SignupForm  newStudent = this.makeStudent( uid, uname, uroll, urole, email);
+	            System.out.println(newStudent);
+	            students.add(newStudent);
+	        }
+	        resultSet.close();
+	        statement.close();
+	        disconnect();
+//	        for(SignupForm c:students) {
+//	        	System.out.println(c.getStudentId() +" | "+c.getFullName()+" | "+c.getStudentEmail());
+//	        }
+	    	return students;
+	    }
 	  
 //===============================================================================================//
 

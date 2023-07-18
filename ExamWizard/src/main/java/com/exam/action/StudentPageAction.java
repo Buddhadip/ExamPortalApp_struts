@@ -29,6 +29,7 @@ public class StudentPageAction extends Action {
     			}
     			System.out.println(studentlist);
     			request.setAttribute("studentlist", studentlist);
+    			request.setAttribute("studentlist", studentlist);
     			return mapping.findForward("success");
     		}else {
     			return mapping.findForward("failure");

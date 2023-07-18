@@ -1,0 +1,67 @@
+const sidebar = document.querySelector(".sidebar");
+const sidebarClose = document.querySelector("#sidebar-close");
+const menu = document.querySelector(".menu-content");
+const menuItems = document.querySelectorAll(".submenu-item");
+const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
+
+sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+menuItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    menu.classList.add("submenu-active");
+    item.classList.add("show-submenu");
+    menuItems.forEach((item2, index2) => {
+      if (index !== index2) {
+        item2.classList.remove("show-submenu");
+      }
+    });
+  });
+});
+
+subMenuTitles.forEach((title) => {
+  title.addEventListener("click", () => {
+    menu.classList.remove("submenu-active");
+  });
+});
+
+function changeExamCard(id) {
+  var examst = document.getElementById(id + "-st");
+  if (examst.disabled == true) {
+    var examet = document.getElementById(id + "-et");
+    var examdur = document.getElementById(id + "-dur");
+    var exambutton = document.getElementById(id + "-but");
+    examst.disabled = false;
+    examet.disabled = false;
+    examdur.disabled = false;
+    exambutton.innerHTML = "Update";
+  }else{
+	 
+	var examid = document.getElementById(id + "-id");
+    var examet = document.getElementById(id + "-et");
+    var examdur = document.getElementById(id + "-dur");
+    var exambutton = document.getElementById(id + "-but");
+    examst.disabled = true;
+    examet.disabled = true;
+    examdur.disabled = true;
+    exambutton.innerHTML = "Edit Exam";
+    var data={
+		"eid":examid.value,
+		"estart":examst.value,
+		"eend":examet.value,
+		"eduration":examdur.value
+	}
+     $.ajax({
+		    type: "GET",
+		    url: "editExam.do",
+		    data: data,
+		    success: function(response) {
+		      //location.reload();
+		      window.location.replace("studentForExam.do");
+		    },
+		    error: function(jqXHR, textStatus, errorThrown) {
+		      // handle error response
+		      alert("Error updating exam");
+		    }
+		  });	
+  }
+}

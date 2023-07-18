@@ -1,0 +1,11 @@
+package com.exam.action;
+
+public class AssignStudentExamActionextends Action {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String examId = request.getParameter("id"); // Extract dynamic parameter from the URL
+        
+        // Perform any necessary logic or processing here
+        
+        return mapping.findForward("success");
+    }
+}

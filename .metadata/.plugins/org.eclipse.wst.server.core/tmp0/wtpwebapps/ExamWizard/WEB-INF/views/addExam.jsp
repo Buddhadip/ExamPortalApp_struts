@@ -72,48 +72,51 @@
           <div class="body-time">
             <div class="exam-card-body-item" style="border-right: 2px solid rgba(0, 0, 0, 0.472)">
               <h5>Opening time</h5>
-              <input type="datetime-local" id="eid-st" class="starttime" name="estart" value="2000-01-01T05:40:00" />
+              <input type="datetime-local"  class="starttime" name="estart" value="2000-01-01T05:40:00" />
             </div>
             <div class="exam-card-body-item">
               <h5>Closing Time</h5>
-              <input type="datetime-local" id="eid-et" class="endtime" name="eend" value="2000-01-01T05:40:00" />
+              <input type="datetime-local"  class="endtime" name="eend" value="2000-01-01T05:40:00" />
             </div>
           </div>
           <div class="duration">
             <h3>Exam Duration(Min)</h3>
-            <input type="text" name="eduration" id="eid-dur" value="30" />
+            <input type="text" name="eduration"  value="30" />
           </div>
         </div>
         <input type="submit" class="create-button" />
       </form>
     </div>
     <div class="card-holder">
-      <div class="exam-card">
+     <c:forEach var="exam" items="${examList}">
+     <div class="exam-card">
 
         <div class="exam-card-header">
-          <h2>DBMS</h2>
-          <input type="text" class="eid" value="eid" style="display: none" />
+          <h2> ${exam.etitle}</h2>
+          <input type="text" class="eid"  id="${exam.eid}-id" name="eid" value="${exam.eid}" style="display: none" />
         </div>
         <div class="exam-card-body">
           <div class="body-time">
             <div class="exam-card-body-item" style="border-right: 2px solid rgba(0, 0, 0, 0.472)">
               <h5>Opening time</h5>
-              <input type="datetime-local" id="eid-st" class="starttime" name="starttime" value="2000-01-01T05:40:00"
+              <input type="datetime-local" id="${exam.eid}-st" class="starttime" name="estart" value="${exam.estart}"
                 disabled />
             </div>
             <div class="exam-card-body-item">
               <h5>Closing Time</h5>
-              <input type="datetime-local" id="eid-et" class="endtime" name="endtime" value="2000-01-01T05:40:00"
+              <input type="datetime-local" id="${exam.eid}-et" class="endtime" name="eend" value="${exam.eend}"
                 disabled />
             </div>
           </div>
           <div class="duration">
             <h3>Exam Duration(Min)</h3>
-            <input type="text" id="eid-dur" value="30" disabled />
+            <input type="text" name="eduration"  id="${exam.eid}-dur" value="${exam.eduration}" disabled />
           </div>
           <div class="button-area">
             <div class="top-button">
-              <button class="exambutton" style="background-color: rgba(255, 78, 13, 0.911)">
+              <button class="exambutton" style="background-color: rgba(255, 78, 13, 0.911)"
+               onclick="window.location.replace('studentForExam.do?eid=${exam.eid}')"
+              >
                 Add Student
               </button>
               <button class="exambutton" style="background-color: rgba(13, 134, 255, 0.911)">
@@ -121,61 +124,18 @@
               </button>
             </div>
             <div class="bottom-button">
-              <button class="exambutton" id="eid-but" style="background-color: rgba(255, 39, 39, 0.911)"
-                onclick="changeExamCard('eid')">
+              <button class="exambutton" id="${exam.eid}-but" style="background-color: rgba(255, 39, 39, 0.911)"
+                onclick="changeExamCard('${exam.eid}')">
                 Edit Exam
               </button>
             </div>
           </div>
         </div>
       </div>
+     
+      </c:forEach>
 
-      <div class="exam-card">
-        <div class="exam-card-header">
-          <h2>DSA</h2>
-          <input type="text" class="eid" value="eid2" style="display: none" />
-        </div>
-        <div class="exam-card-body">
-          <div class="body-time">
-            <div class="exam-card-body-item" style="border-right: 2px solid rgba(0, 0, 0, 0.472)">
-              <h5>Opening time</h5>
-              <input type="datetime-local" id="eid2-st" class="starttime" name="starttime" value="2000-01-01T05:40:00"
-                disabled />
-            </div>
-            <div class="exam-card-body-item">
-              <h5>Closing Time</h5>
-              <input type="datetime-local" id="eid2-et" class="endtime" name="endtime" value="2000-01-01T05:40:00"
-                disabled />
-            </div>
-          </div>
-          <div class="duration">
-            <h3>Exam Duration(Min)</h3>
-            <input type="text" id="eid2-dur" value="30" disabled />
-          </div>
-          <div class="button-area">
-            <div class="top-button">
-              <button class="exambutton" style="background-color: rgba(255, 78, 13, 0.911)">
-                Add Student
-              </button>
-              <button class="exambutton" style="background-color: rgba(13, 134, 255, 0.911)">
-                Add Question
-              </button>
-            </div>
-            <div class="bottom-button">
-              <button class="exambutton" id="eid2-but" style="background-color: rgba(255, 39, 39, 0.911)"
-                onclick="changeExamCard('eid2')">
-                Edit Exam
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="exam-card"></div>
-      <div class="exam-card"></div>
-      <div class="exam-card"></div>
-      <div class="exam-card"></div>
-      <div class="exam-card"></div>
-      <div class="exam-card"></div>
+      
     </div>
   </main>
 

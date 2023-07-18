@@ -1,0 +1,166 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AssignStudentExam</title>
+
+ <link rel="stylesheet" type="text/css" href="public/styles/assignStudentExam.css" />
+</head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h1>Exam-${eid }</h1>
+      </nav>
+    </header>
+    <div class="main">
+      <div class="select-section">
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Roll No</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" name="studentname" value="1" checked />
+              </td>
+              <td>John Doe</td>
+              <td>12345</td>
+              <td>johndoe@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="2" /></td>
+              <td>Jane Smith</td>
+              <td>67890</td>
+              <td>janesmith@example.com</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="studentname" value="3" checked />
+              </td>
+              <td>Michael Johnson</td>
+              <td>54321</td>
+              <td>michaeljohnson@example.com</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="studentname" value="4" checked />
+              </td>
+              <td>Sarah Brown</td>
+              <td>98765</td>
+              <td>sarahbrown@example.com</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="studentname" value="5" checked />
+              </td>
+              <td>Robert Davis</td>
+              <td>24680</td>
+              <td>robertdavis@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="6" /></td>
+              <td>Emily Wilson</td>
+              <td>13579</td>
+              <td>emilywilson@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="7" /></td>
+              <td>David Anderson</td>
+              <td>97531</td>
+              <td>davidanderson@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="8" /></td>
+              <td>Laura Garcia</td>
+              <td>80246</td>
+              <td>lauragarcia@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="9" /></td>
+              <td>Andrew Martinez</td>
+              <td>46802</td>
+              <td>andrewmartinez@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="10" /></td>
+              <td>Megan Thompson</td>
+              <td>35791</td>
+              <td>megantompson@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="11" /></td>
+              <td>Christopher Lee</td>
+              <td>62470</td>
+              <td>christopherlee@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="12" /></td>
+              <td>Olivia Clark</td>
+              <td>18092</td>
+              <td>oliviaclark@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="13" /></td>
+              <td>William Rodriguez</td>
+              <td>30924</td>
+              <td>williamrodriguez@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="14" /></td>
+              <td>Ava Hernandez</td>
+              <td>72683</td>
+              <td>avahernandez@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="15" /></td>
+              <td>James White</td>
+              <td>29457</td>
+              <td>jameswhite@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="16" /></td>
+              <td>Sophia Turner</td>
+              <td>87654</td>
+              <td>sophiaturner@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="17" /></td>
+              <td>Daniel Harris</td>
+              <td>41379</td>
+              <td>danielharris@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="18" /></td>
+              <td>Emma Martin</td>
+              <td>95742</td>
+              <td>emmamartin@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="19" /></td>
+              <td>David Johnson</td>
+              <td>98765</td>
+              <td>davidjohnson@example.com</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="studentname" value="20" /></td>
+              <td>Emily Brown</td>
+              <td>54321</td>
+              <td>emilybrown@example.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+     
+    </div> 
+    <button class="submit-button" onclick="submitAllStudentName()">Submit</button>
+    <script src="public/js/assignStudentExam.js"></script>
+  </body>
+</html>

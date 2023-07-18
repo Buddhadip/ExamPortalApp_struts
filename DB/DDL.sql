@@ -110,3 +110,6 @@ VALUES
 
 
 select * from user ORDER BY uname;
+select * from Exam;
+
+select * from ExamUser;

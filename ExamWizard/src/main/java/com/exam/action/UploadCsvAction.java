@@ -41,6 +41,7 @@ public class UploadCsvAction extends Action {
 		        	System.out.println(uf.toString());
 		        	if(uf.getName()!=null && uf.getEmail()!=null && uf.getRoll()!=null) {
 		        		boolean isUpdated=udao.addUser(uf.getName(),uf.getEmail(),uf.getRoll(),"Student");
+		        		System.out.println(isUpdated);
 		        	}
 		        }
 			    

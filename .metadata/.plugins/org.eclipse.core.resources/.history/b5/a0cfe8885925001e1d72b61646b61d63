@@ -1,0 +1,57 @@
+package com.exam.action;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
+
+import com.exam.dao.ExamDAO;
+import com.exam.form.ExamForm;
+import com.google.gson.Gson;
+
+public class AssignStudentToExamAction  extends Action {
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	
+    	 String jsonString = getRequestBody(request);
+
+         // Process the jsonString containing the JSON array
+         // Convert the JSON array to a Java array using Gson
+         Gson gson = new Gson();
+         System.out.println(jsonString);
+         String[] javaArray = gson.fromJson(jsonString, String[].class);
+
+         // Process the javaArray as needed
+         if (javaArray != null) {
+             System.out.println("Java Array:");
+             for (String value : javaArray) {
+                 System.out.println(value);
+             }
+         }
+
+         // Perform any other necessary logic or processing
+
+         return null; // Return the appropriate ActionForward
+    }
+    private String getRequestBody(HttpServletRequest request) {
+        StringBuilder buffer = new StringBuilder();
+        BufferedReader reader;
+        try {
+            reader = request.getReader();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line);
+            }
+        } catch (IOException e) {
+            // Handle the exception
+        }
+        return buffer.toString();
+    }
+}

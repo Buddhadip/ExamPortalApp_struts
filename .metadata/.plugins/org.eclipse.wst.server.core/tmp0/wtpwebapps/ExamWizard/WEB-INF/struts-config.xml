@@ -63,6 +63,24 @@
 					<forward name="success" path="/addExamPage.do"/> 
 	</action>
 </action-mappings>
+ <action-mappings>
+	<action path="/editExam" type="com.exam.action.EditExamAction"  name="ExamForm" scope="request" validate="true">
+					<forward name="success" path="/addExamPage.do"/> 
+	</action>
+</action-mappings>
+<action-mappings>
+        <action path="/studentForExam" type="com.exam.action.AssignStudentExamPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/assignStudentExam.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/assignStudent" type="com.exam.action.AssignStudentToExamAction"   scope="request" >
+           
+        </action>
+</action-mappings>
+
+
 
 </struts-config>
  

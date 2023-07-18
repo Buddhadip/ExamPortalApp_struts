@@ -35,6 +35,8 @@ function changeExamCard(id) {
     examdur.disabled = false;
     exambutton.innerHTML = "Update";
   }else{
+	 
+	var examid = document.getElementById(id + "-id");
     var examet = document.getElementById(id + "-et");
     var examdur = document.getElementById(id + "-dur");
     var exambutton = document.getElementById(id + "-but");
@@ -42,5 +44,24 @@ function changeExamCard(id) {
     examet.disabled = true;
     examdur.disabled = true;
     exambutton.innerHTML = "Edit Exam";
+    var data={
+		"eid":examid.value,
+		"estart":examst.value,
+		"eend":examet.value,
+		"eduration":examdur.value
+	}
+     $.ajax({
+		    type: "GET",
+		    url: "editExam.do",
+		    data: data,
+		    success: function(response) {
+		      //location.reload();
+		      window.location.replace("addExamPage.do");
+		    },
+		    error: function(jqXHR, textStatus, errorThrown) {
+		      // handle error response
+		      alert("Error updating exam");
+		    }
+		  });	
   }
 }
