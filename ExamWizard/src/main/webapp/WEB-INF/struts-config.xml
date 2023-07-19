@@ -5,6 +5,7 @@
 		<form-bean name="LoginForm" type="com.exam.form.LoginForm"/>
 	    <form-bean name="SignupForm" type="com.exam.form.SignupForm"/>
 	    <form-bean name="ExamForm" type="com.exam.form.ExamForm"/>
+	     <form-bean name="QuestionSubmitForm" type="com.exam.form.QuestionSubmitForm"/>
 </form-beans>
  <action-mappings>
     <action path="/uploadCSV" type="com.exam.action.UploadCsvAction" name="fileUploadForm"
@@ -79,7 +80,22 @@
            
         </action>
 </action-mappings>
-
+<action-mappings>
+        <action path="/studentExams" type="com.exam.action.StudentExamsPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/studentExams.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/addNewQuestionsPage" type="com.exam.action.AddNewQuestionsPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/addQuestions.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/submitQuestions" type="com.exam.action.SubmitQuestionAction"   name="QuestionSubmitForm" scope="request" validate="true"  >
+        </action>
+</action-mappings>
 
 
 </struts-config>

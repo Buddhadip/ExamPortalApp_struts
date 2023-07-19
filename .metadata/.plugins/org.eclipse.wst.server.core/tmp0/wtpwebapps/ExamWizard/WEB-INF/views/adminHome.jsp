@@ -16,6 +16,7 @@
 <% 
    // Retrieve a session attribute
    String username = (String) session.getAttribute("username");
+
 %>
 <nav class="sidebar">
       <a href="#" class="logo">
@@ -54,7 +55,7 @@
 
     <nav class="navbar">
       <i class="fa-solid fa-bars" id="sidebar-close"></i>
-      <div class="hellotext">Hello <%= username %></div>
+      <div class="hellotext">Hello ${uname}</div>
     </nav>
 
     <main class="main">

@@ -22,30 +22,36 @@ CREATE TABLE Exam (
 );
 
 -- 3.
+Drop table Question;
 CREATE TABLE Question (
     Qid INT PRIMARY KEY  AUTO_INCREMENT,
     QText TEXT,
     QMarks INT,
-    QImage VARCHAR(255),
-    QAns INT,
-    Eid INT
+    QImage VARCHAR(255)
+);
+    
+Drop table QuestionToExam;
+CREATE TABLE QuestionToExam (
+    Qid int,
+	Eid Int,
+    FOREIGN KEY (Qid) REFERENCES Question(Qid),
+    FOREIGN KEY (Eid) REFERENCES Exam(Eid)
     );
     
+    
 -- 4.
+
 CREATE TABLE Options (
     Oid INT PRIMARY KEY  AUTO_INCREMENT,
     OText VARCHAR(255),
     OImage VARCHAR(255),
-    Qid INT
+    Qid INT,
+    isAns boolean
 );
 
 -- 5. Modifying Tables
-ALTER TABLE Question
-ADD FOREIGN KEY (QAns) REFERENCES Options(Oid),
-ADD FOREIGN KEY (Eid) REFERENCES Exam(Eid);
+
 -- --------------------------------------------
-ALTER TABLE Options
-ADD FOREIGN KEY (Qid) REFERENCES Question(Qid);
 
 -- 6.
 CREATE TABLE Results (
@@ -113,3 +119,15 @@ select * from user ORDER BY uname;
 select * from Exam;
 
 select * from ExamUser;
+
+SELECT *
+FROM Exam
+WHERE Eend > NOW();
+
+SELECT *
+FROM Exam
+WHERE Eend > NOW()
+and estart<NOW() order by estart;
+
+
+select * from question;

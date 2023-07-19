@@ -1,0 +1,7 @@
+package com.exam.form;
+
+import org.apache.struts.action.ActionForm;
+
+public class QuestionSubmitForm  extends ActionForm{
+		
+}

@@ -47,6 +47,33 @@ public class ExamDAO {
         }
     }
     
+    public ExamForm getExam(String examid) throws SQLException {
+        ExamForm exam = new ExamForm();
+
+        connect();
+
+        String query = "SELECT * FROM Exam where eid = "+examid;
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        if (resultSet.next()) {
+            int eid = resultSet.getInt("Eid");
+            String eTitle = resultSet.getString("ETitle");
+            int eDuration = resultSet.getInt("EDuration");
+            String eStart = this.convertToHTMLDate( resultSet.getString("EStart"));
+            String eEnd = this.convertToHTMLDate(resultSet.getString("EEnd")) ;
+            exam = new ExamForm(eid, eTitle, eDuration, eStart, eEnd);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        disconnect();
+
+        return exam;
+    }
+
+    
  // Retrieves all exams from the database
     public List<ExamForm> getAllExam() throws SQLException {
         List<ExamForm> exams = new ArrayList<>();
@@ -66,6 +93,61 @@ public class ExamDAO {
 
             ExamForm exam = new ExamForm(eid, eTitle, eDuration, eStart, eEnd);
             System.out.println(exam);
+            exams.add(exam);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        disconnect();
+
+        return exams;
+    }
+    public List<ExamForm> getAllNotExamExam() throws SQLException {
+        List<ExamForm> exams = new ArrayList<>();
+
+        connect();
+
+        String query = "SELECT * FROM Exam WHERE Eend > NOW()  order by estart";
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        while (resultSet.next()) {
+            int eid = resultSet.getInt("Eid");
+            String eTitle = resultSet.getString("ETitle");
+            int eDuration = resultSet.getInt("EDuration");
+            String eStart = this.convertToHTMLDate( resultSet.getString("EStart"));
+            String eEnd = this.convertToHTMLDate(resultSet.getString("EEnd")) ;
+
+            ExamForm exam = new ExamForm(eid, eTitle, eDuration, eStart, eEnd);
+            exams.add(exam);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        disconnect();
+
+        return exams;
+    }
+    
+    public List<ExamForm> getAllOnlineExam() throws SQLException {
+        List<ExamForm> exams = new ArrayList<>();
+
+        connect();
+
+        String query = "SELECT * FROM Exam WHERE Eend > NOW() and estart < NOW()  order by estart";
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        while (resultSet.next()) {
+            int eid = resultSet.getInt("Eid");
+            String eTitle = resultSet.getString("ETitle");
+            int eDuration = resultSet.getInt("EDuration");
+            String eStart = this.convertToHTMLDate( resultSet.getString("EStart"));
+            String eEnd = this.convertToHTMLDate(resultSet.getString("EEnd")) ;
+
+            ExamForm exam = new ExamForm(eid, eTitle, eDuration, eStart, eEnd);
             exams.add(exam);
         }
 

@@ -1,0 +1,10 @@
+package com.exam.form;
+
+import org.apache.struts.action.ActionForm;
+
+public class QuestionSubmitForm  extends ActionForm{
+	
+		private static final long serialVersionUID = 1L;
+		private int eid;
+		
+}

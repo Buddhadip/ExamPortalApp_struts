@@ -40,6 +40,29 @@ public class LoginDAO {
             conn.close();
         }
     }
+    
+    public String getIdByEmail(String mail) throws SQLException {
+    	String userId="";
+    	connect();
+        PreparedStatement stmt = conn.prepareStatement("SELECT uid FROM User WHERE emailid = ?");
+        stmt.setString(1, mail);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            userId = rs.getString("uid");
+        }
+		return userId;
+    }
+    public String getNameByEmail(String mail) throws SQLException {
+    	String uname="";
+    	connect();
+        PreparedStatement stmt = conn.prepareStatement("SELECT uname FROM User WHERE emailid = ?");
+        stmt.setString(1, mail);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            uname = rs.getString("uname");
+        }
+		return uname;
+    }
 
     // Checking whether credentials valid or not
     public String isValidCredentials(String username, String password) throws SQLException {

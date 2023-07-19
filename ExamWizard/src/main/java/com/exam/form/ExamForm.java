@@ -64,6 +64,12 @@ public class ExamForm extends ActionForm{
 	 public String toString() {
 	        return "Exam [ id = "+this.eid+"," +this.etitle+" , "+this.estart+" ]";
 	 }
-	
+	@Override
+    public boolean equals(Object o) {
+		if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExamForm a = (ExamForm) o;
+        return this.eid==a.eid;
+    }
 
 }

@@ -119,7 +119,9 @@
               >
                 Add Student
               </button>
-              <button class="exambutton" style="background-color: rgba(13, 134, 255, 0.911)">
+              <button class="exambutton" style="background-color: rgba(13, 134, 255, 0.911)" 
+               onclick="window.location.replace('addNewQuestionsPage.do?eid=${exam.eid}')"
+              >
                 Add Question
               </button>
             </div>

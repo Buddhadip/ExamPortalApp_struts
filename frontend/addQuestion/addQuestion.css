@@ -192,3 +192,26 @@ body{
       cursor: pointer;
       margin: auto;
     }
+
+    .more-qs{
+      width: 40%;
+      margin: auto;
+      background-color: rgba(188, 116, 255, 0.533);
+      border: 2px solid rgba(188, 116, 255, 0.933); 
+      color: black;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .more-qs:hover{
+      background-color: rgba(188, 116, 255, 0.733);
+      color: #ffffff;
+    }
+
+    .more-qs a{
+      text-decoration: none;
+      color: inherit;
+    }

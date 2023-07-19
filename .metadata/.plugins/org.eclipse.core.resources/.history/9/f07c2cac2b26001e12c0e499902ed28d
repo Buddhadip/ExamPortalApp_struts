@@ -1,0 +1,60 @@
+package com.exam.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+
+public class OptionDAO {
+
+    private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+
+    public OptionDAO() {
+        this.jdbcURL = "jdbc:mysql://localhost:3306/exam_master";
+        this.jdbcUsername = "root";
+        this.jdbcPassword = "root";
+    }
+
+    // Establishes a database connection
+    protected void connect() throws SQLException {
+        if (conn == null || conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+    }
+
+    // Closes the database connection
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+    }
+    
+    // Method to insert a new option into the "Option" table
+    public void insertOption(String optionText, int questionId,boolean isAns) throws SQLException {
+        String sql = "INSERT INTO Option (OText, Qid,isAns) VALUES (?, ?, ?)";
+        
+        PreparedStatement statement = conn.prepareStatement(sql); 
+            statement.setString(1, optionText);
+            statement.setInt(2, questionId);
+            statement.setBoolean(3, isAns);
+            
+            statement.executeUpdate();
+            
+            
+            statement.close();
+            disconnect();
+           
+        }
+    
+}

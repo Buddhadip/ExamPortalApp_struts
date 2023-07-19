@@ -59,6 +59,26 @@ public class ExamUserDAO {
 	        return students;
 	    }
 	    
+	    public List<String> getExamByStudent(String uid) throws SQLException {
+	        List<String> exams = new ArrayList<>();
+
+	        connect();
+	        String query = "SELECT eid FROM ExamUser where uid = ? ";
+	        PreparedStatement preparedStatement = conn.prepareStatement(query); 
+	        preparedStatement.setString(1,uid);
+	        
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	        while (resultSet.next()) {
+	            String eid = resultSet.getString("eid");
+	            exams.add(eid);
+	        }
+	        disconnect();
+
+	        return exams;
+	    }
+	    
+	    
+	    
 	    public void deleteStudents(String eid) throws SQLException {
 	    	connect();
 	        String deleteQuery="Delete from ExamUser where eid="+eid;
