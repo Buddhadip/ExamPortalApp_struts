@@ -1,0 +1,32 @@
+package com.exam.service;
+
+import java.util.ArrayList;
+
+import com.exam.form.UserForm;
+
+public class ReadCSV {
+	String fileContent;
+	public ReadCSV(String fileContent) {
+		this.fileContent=fileContent;
+	}
+	public ArrayList<String[]> getData(){
+		ArrayList<String[]> data = new ArrayList<String[]>();
+		String[] lines=fileContent.split("\n");
+		lines=this.deleteFirstElement(lines);
+		data.add(lines);
+            
+        
+		return data;
+		
+	}
+	 public String[] deleteFirstElement(String[] array) {
+	        if (array == null || array.length == 0) {
+	            return array;
+	        }
+
+	        String[] newArray = new String[array.length - 1];
+	        System.arraycopy(array, 1, newArray, 0, array.length - 1);
+
+	        return newArray;
+	    }
+}

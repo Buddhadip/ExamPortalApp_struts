@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content=" initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="public/styles/Exampage.css" />
+  </head>
+  <body>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <div id="header"> ${ename} </div>
+    <div id="time-section">Time left: <span id="timer">00:00</span></div>
+    <div id="main-section">
+      <form id="problem-section" >
+        <c:forEach var="question" items="${qsSet}">
+        <div id="problem-${question.getQid()}" class="box-of-questions" >
+        <h3>Question </h3>
+	        <div class="question">
+	            <p class="qtext"> ${question.getQtext() } </p>
+	            <label>
+	            <input type="radio" name="qs-${question.getQid()}" onchange="handleRadioChange(${question.getQid()})" value="${question.getOptions().get(0).getOid()}"  disable />
+	            <span>${question.getOptions().get(0).getOtext() } </span>
+	            </label>
+	            <label>
+	            <input type="radio" name="qs-${question.getQid()}" onchange="handleRadioChange(${question.getQid()})"  disable />
+	            <span>${question.getOptions().get(1).getOtext() } </span>
+	            </label>
+	            <label>
+	            <input type="radio" name="qs-${question.getQid()}" onchange="handleRadioChange(${question.getQid()})"  disable />
+	            <span>${question.getOptions().get(2).getOtext() } </span>
+	            </label>
+	            <label>
+	            <input type="radio" name="qs-${question.getQid()}" onchange="handleRadioChange(${question.getQid()})"  disable />
+	            <span>${question.getOptions().get(3).getOtext() } </span>
+	            </label>
+	        </div>
+	        <div class="button-section">
+	        <hr/><input type="submit" class="change-button2" />
+	      </div>
+	      <hr />
+	      </div>
+	    </c:forEach>
+      </form>
+      
+      <div id="navigator">
+        <div id="personal-info">
+          <h2>${uname}</h2>
+          <h4>${uroll}</h4>
+          <hr />
+        </div>
+        <div id="nav-buttons">
+        <c:forEach var="question" items="${qsSet}">
+          <button class="roundbutton"  id="probbutt-${question.getQid()}" onclick="changeSection(${question.getQid()})">${question.getQid()}</button>
+         </c:forEach>
+        </div>
+      </div>
+    </div>
+    <script src="public/js/Exampage.js"></script>
+    <script type="text/javascript">
+    	// On page load
+    	window.onload = function () {
+    	  var thirtyMinutes = 60 * ${eduration} ,
+    	    display = document.querySelector("#timer");
+    	  startCountdown(thirtyMinutes, display);
+    	};
+    </script>
+  </body>
+</html>

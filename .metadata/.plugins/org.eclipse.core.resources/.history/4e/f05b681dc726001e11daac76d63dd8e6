@@ -1,0 +1,20 @@
+package com.exam.service;
+
+import java.util.ArrayList;
+
+import com.exam.dao.OptionDAO;
+import com.exam.dao.QuestionDAO;
+import com.exam.dao.QuestionToExamDAO;
+import com.exam.dto.QuestionDTO;
+
+public class GetQuestionSet {
+		public static ArrayList<QuestionDTO> getQuestion(int eid){
+			ArrayList<QuestionDTO> examset = new ArrayList<>();
+			
+			QuestionDAO qdao = new QuestionDAO();
+			OptionDAO odao = new OptionDAO();
+			QuestionToExamDAO qtedao = new QuestionToExamDAO();
+			
+			return examset;
+		}
+}

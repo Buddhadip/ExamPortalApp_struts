@@ -1,0 +1,24 @@
+package com.exam.dto;
+
+import java.util.ArrayList;
+
+public class QuestionDTO {
+	public int qid;
+	public String qtext;
+
+	public ArrayList<OptionDTO> options = new ArrayList<>();
+	
+	public void setQuestion(int qid, String qtext) {
+		this.qid=qid;
+		this.qtext=qtext;
+	}
+	
+	public setOptionA(int oid, String otext) {
+		OptionDTO q = new OptionDTO(oid,otext);
+		
+		
+	}
+	
+	
+	
+}

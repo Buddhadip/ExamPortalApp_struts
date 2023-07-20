@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.exam.dto.QuestionDTO;
+import com.exam.dto.Triad;
+
 public class QuestionDAO {
 
     private String jdbcURL;
@@ -92,4 +95,51 @@ public class QuestionDAO {
             statement.close();
             disconnect();
         }
+    
+    public Triad<Integer,String,String> getQuestion(int qid) throws SQLException {
+    	Triad<Integer,String,String> t = new Triad<>();
+        String sql = "select qtext,qmarks from question where qid = ?";
+        connect();
+        
+        PreparedStatement statement = conn.prepareStatement(sql); 
+        statement.setInt(1, qid);
+          
+        try (ResultSet resultSet = statement.executeQuery()) {
+           if (resultSet.next()) {
+                int qmarks= resultSet.getInt("qmarks");
+                String qtext=resultSet.getString("qtext");
+                t.first=qmarks;
+                t.second=qtext;
+            }
+        }
+        statement.close();
+        disconnect();
+        
+        return t;
+    }
+    
+    public int totalMarks(int eid) throws SQLException {
+    	int total=0;
+        String sql = "select sum(qmarks) as total from questiontoexam join question \r\n"
+        		+ "where question.qid=questiontoexam.qid\r\n"
+        		+ "and eid=?";
+        connect();
+        
+        PreparedStatement statement = conn.prepareStatement(sql); 
+        statement.setInt(1, eid);
+          
+        try (ResultSet resultSet = statement.executeQuery()) {
+           if (resultSet.next()) {
+                total= resultSet.getInt("total");
+            }
+        }
+        statement.close();
+        disconnect();
+        
+        return total;
+    }
+    
+    
+    
+    
 }

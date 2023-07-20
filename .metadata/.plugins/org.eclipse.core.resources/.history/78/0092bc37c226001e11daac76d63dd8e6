@@ -1,0 +1,26 @@
+package com.exam.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import com.exam.dao.OptionDAO;
+import com.exam.dao.QuestionDAO;
+import com.exam.form.QuestionSubmitForm;
+import com.exam.service.AddQuestion;
+
+public class SubmitQuestionAction  extends Action {
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response) throws Exception {
+    		QuestionSubmitForm qform =(QuestionSubmitForm) form;
+    		System.out.println(qform);
+    		
+    		AddQuestion.add(qform.getEid(), qform.getQ_text(), qform.getOption_a_text(), qform.getOption_b_text(),
+    				qform.getOption_c_text(), qform.getOption_d_text(), qform.getMarks(), qform.getAnswer());    
+    		
+    		return new ActionForward("/addNewQuestionsPage.do?eid="+Integer.toString(qform.getEid()), true);
+    }}

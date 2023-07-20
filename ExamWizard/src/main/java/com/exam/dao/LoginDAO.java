@@ -63,6 +63,18 @@ public class LoginDAO {
         }
 		return uname;
     }
+    
+    public String getRollByEmail(String mail) throws SQLException {
+    	String uroll="";
+    	connect();
+        PreparedStatement stmt = conn.prepareStatement("SELECT uroll FROM User WHERE emailid = ?");
+        stmt.setString(1, mail);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+        	uroll = rs.getString("uroll");
+        }
+		return uroll;
+    }
 
     // Checking whether credentials valid or not
     public String isValidCredentials(String username, String password) throws SQLException {

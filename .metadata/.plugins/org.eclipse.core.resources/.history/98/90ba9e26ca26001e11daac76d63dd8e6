@@ -1,0 +1,87 @@
+package com.exam.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.exam.dto.QuestionDTO;
+
+
+
+public class OptionDAO {
+
+    private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+
+    public OptionDAO() {
+        this.jdbcURL = "jdbc:mysql://localhost:3306/exam_master";
+        this.jdbcUsername = "root";
+        this.jdbcPassword = "root";
+    }
+
+    // Establishes a database connection
+    protected void connect() throws SQLException {
+        if (conn == null || conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+    }
+
+    // Closes the database connection
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+    }
+    
+    // Method to insert a new option into the "Option" table
+    public void insertOption(String optionText, int questionId,boolean isAns) throws SQLException {
+        String sql = "INSERT INTO Options (OText, Qid,isAns) VALUES (?, ?, ?)";
+        connect();
+        PreparedStatement statement = conn.prepareStatement(sql); 
+            statement.setString(1, optionText);
+            statement.setInt(2, questionId);
+            statement.setBoolean(3, isAns);
+            
+            statement.executeUpdate();
+            
+            
+            statement.close();
+            disconnect();
+           
+        }
+    
+    public QuestionDTO getoptions(int qid,String qtext) throws SQLException {
+    	
+    	QuestionDTO qdto = new QuestionDTO();
+    	qdto.setQuestion(qid, qtext);
+        String sql = "select oid,otext from options where qid=?";
+        connect();
+        
+        PreparedStatement statement = conn.prepareStatement(sql); 
+        statement.setInt(1, qid);
+          
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int oid = resultSet.getInt("oid");
+                String otext=resultSet.getString("otext");
+                qdto.addOption(oid, otext);
+            }
+        }
+        statement.close();
+        disconnect();
+        
+        return qdto;
+           
+        }
+    
+    
+}

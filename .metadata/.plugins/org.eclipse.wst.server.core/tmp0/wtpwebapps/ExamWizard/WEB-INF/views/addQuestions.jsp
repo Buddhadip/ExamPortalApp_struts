@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="public/styles/addQuestions.css" />
 </head>
 <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div id="header">Exam code:  ${eid} </div>
     <div class="more-qs">
       <a href="./allQuestions">Add from previous questions</a>
@@ -150,5 +151,53 @@
         </div>
       </form>
     </div>
+    
+    <div class="box2">
+      <form
+        action="uploadQuestionCSV.do"
+        method="post"
+        enctype="multipart/form-data"
+      >
+       <h2>Add bulk questions</h2>
+        <input type="text" name="eid" value="${eid}"  style="display: none;">
+        <input type="file" class="csv-uploader" name="file" accept=".csv" />
+        <input type="submit" value="Upload csv" class="upload-button" />
+      </form>
+    </div>
+     <div id="prev_problems">
+      <h2 style="text-align: center">OTHER QUESTIONS</h2>
+      <div id="problem-section">
+       <c:forEach var="question" items="${qsSet}">
+        <div id="problem" >
+        <h3>Question </h3>
+	        <div class="question">
+	            <p class="qtext"> ${question.getQtext() } </p>
+	            <label>
+	            <input type="radio" name="qs" onchange="handleRadioChange(${i+1})"   disable />
+	            <span>${question.getOptions().get(0).getOtext() } </span>
+	            </label>
+	            <label>
+	            <input type="radio" name="qs" onchange="handleRadioChange(${i+1})"  disable />
+	            <span>${question.getOptions().get(1).getOtext() } </span>
+	            </label>
+	            <label>
+	            <input type="radio" name="qs" onchange="handleRadioChange(${i+1})"  disable />
+	            <span>${question.getOptions().get(2).getOtext() } </span>
+	            </label>
+	            <label>
+	            <input type="radio" name="qs" onchange="handleRadioChange(${i+1})"  disable />
+	            <span>${question.getOptions().get(3).getOtext() } </span>
+	            </label>
+	        </div>
+	        <div class="button-section">
+	        <button class="change-button2" id="delete-button"  > Delete </button>
+	      </div>
+	      <hr />
+	      </div>
+	    </c:forEach>
+      </div>
+    </div>
+
+    
 </body>
 </html>

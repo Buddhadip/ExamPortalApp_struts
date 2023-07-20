@@ -22,7 +22,7 @@ CREATE TABLE Exam (
 );
 
 -- 3.
-Drop table Question;
+
 CREATE TABLE Question (
     Qid INT PRIMARY KEY  AUTO_INCREMENT,
     QText TEXT,
@@ -30,7 +30,7 @@ CREATE TABLE Question (
     QImage VARCHAR(255)
 );
     
-Drop table QuestionToExam;
+
 CREATE TABLE QuestionToExam (
     Qid int,
 	Eid Int,
@@ -115,19 +115,28 @@ VALUES
   ('Jessica Rodriguez', 'J2023016', 'Student', 'jrodriguez@example.com');
 
 
-select * from user ORDER BY uname;
-select * from Exam;
+-- select * from user ORDER BY uname;
+-- select * from Exam;
 
-select * from ExamUser;
+-- select * from ExamUser;
 
-SELECT *
-FROM Exam
-WHERE Eend > NOW();
+-- SELECT *
+-- FROM Exam
+-- WHERE Eend > NOW();
 
-SELECT *
-FROM Exam
-WHERE Eend > NOW()
-and estart<NOW() order by estart;
+-- SELECT *
+-- FROM Exam
+-- WHERE Eend > NOW()
+-- and estart<NOW() order by estart;
 
 
 select * from question;
+select * from options;
+-- select * from QuestionToExam;
+
+select isAns from options where Qid=4 and oid=14;
+
+select sum(qmarks) as total from questiontoexam join question 
+where question.qid=questiontoexam.qid
+and eid=1
+;

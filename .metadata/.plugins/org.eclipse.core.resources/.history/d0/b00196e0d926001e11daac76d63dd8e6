@@ -1,0 +1,64 @@
+package com.exam.action;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
+
+import com.exam.dao.UserDAO;
+import com.exam.form.FileUploadForm;
+import com.exam.form.QuestionCsvUploadForm;
+import com.exam.form.UserForm;
+import com.exam.service.AddQuestion;
+import com.exam.service.ReadCSV;
+import com.exam.service.ReadQuestionCSV;
+
+public class QuestionCsvUploadAction  extends Action {
+	public ActionForward execute(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+				QuestionCsvUploadForm fileUploadForm = (QuestionCsvUploadForm)form;
+			    FormFile file = fileUploadForm.getFile();
+			    int eid= fileUploadForm.getEid();
+			    System.out.println(file.getFileName());
+			    String fileContent = readFileContent(file);
+
+		        // Print the file content
+		        System.out.println("File Content:\n" + fileContent);
+		        
+		        ReadQuestionCSV rcsv=new ReadQuestionCSV(fileContent);
+		        ArrayList<String[]> data = rcsv.getData();
+		        
+		        for( String[] s: data) {
+
+		        	AddQuestion.add(eid, s[1],  s[2],  s[3],  s[4],  s[5], Integer.parseInt( s[7]),  s[6]);
+		        }
+		        return new ActionForward("/addNewQuestionsPage.do?eid="+Integer.toString(eid), true);
+		
+	}
+	
+	private String readFileContent(FormFile file) throws IOException {
+        InputStream inputStream = file.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        StringBuilder fileContent = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            fileContent.append(line).append("\n");
+        }
+
+        reader.close();
+        inputStream.close();
+
+        return fileContent.toString();
+    }
+}

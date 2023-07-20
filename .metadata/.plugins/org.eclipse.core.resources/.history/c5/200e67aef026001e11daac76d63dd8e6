@@ -1,0 +1,20 @@
+package com.exam.service;
+
+import java.sql.SQLException;
+
+import com.exam.dao.QuestionDAO;
+import com.exam.dto.Triad;
+
+public class CheckAnswer {
+		public static int check(int qid,int oid) throws SQLException {
+			QuestionDAO qdao = new QuestionDAO();
+			Triad<Integer,String,String> t =  qdao.getQuestion(qid);
+			int marks=t.first;
+			//System.out.println(qid +" ,"+marks);
+			
+			
+			
+			
+			return marks;
+		}
+}

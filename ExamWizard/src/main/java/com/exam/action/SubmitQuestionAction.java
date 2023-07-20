@@ -11,43 +11,16 @@ import org.apache.struts.action.ActionMapping;
 import com.exam.dao.OptionDAO;
 import com.exam.dao.QuestionDAO;
 import com.exam.form.QuestionSubmitForm;
+import com.exam.service.AddQuestion;
 
 public class SubmitQuestionAction  extends Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response) throws Exception {
     		QuestionSubmitForm qform =(QuestionSubmitForm) form;
     		System.out.println(qform);
-    		QuestionDAO qdao = new QuestionDAO();
-    		int qid=qdao.insertQuestion(qform.getQ_text(), qform.getMarks());
-    		System.out.println(qid);
     		
-    		
-    		OptionDAO odao = new OptionDAO();
-    		
-    		if(qform.getAnswer().equalsIgnoreCase("a")) {
-    			odao.insertOption(qform.getOption_a_text(),qid,true);
-    		}else {
-    			odao.insertOption(qform.getOption_a_text(),qid,false);
-    		}
-    		
-    		if(qform.getAnswer().equalsIgnoreCase("b")) {
-    			odao.insertOption(qform.getOption_b_text(),qid,true);
-    		}else {
-    			odao.insertOption(qform.getOption_b_text(),qid,false);
-    		}
-    		
-    		if(qform.getAnswer().equalsIgnoreCase("c")) {
-    			odao.insertOption(qform.getOption_c_text(),qid,true);
-    		}else {
-    			odao.insertOption(qform.getOption_c_text(),qid,false);
-    		}
-    		
-    		if(qform.getAnswer().equalsIgnoreCase("d")) {
-    			odao.insertOption(qform.getOption_d_text(),qid,true);
-    		}else {
-    			odao.insertOption(qform.getOption_d_text(),qid,false);
-    		}
-    		
+    		AddQuestion.add(qform.getEid(), qform.getQ_text(), qform.getOption_a_text(), qform.getOption_b_text(),
+    						qform.getOption_c_text(), qform.getOption_d_text(), qform.getMarks(), qform.getAnswer());    
     		
     		return new ActionForward("/addNewQuestionsPage.do?eid="+Integer.toString(qform.getEid()), true);
     }}

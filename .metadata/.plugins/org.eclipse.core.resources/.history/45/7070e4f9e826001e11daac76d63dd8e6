@@ -1,0 +1,66 @@
+function startCountdown(duration, display) {
+  var timer = duration,
+    minutes,
+    seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      timer = duration;
+    }
+  }, 1000);
+}
+
+
+
+var questionstate_global=1;
+var checked_global = [];
+for(let i=0;i<qslength;i++){
+    checked_global.push(false);
+}
+
+
+function changeSection(n) {
+    for(let i=0;i<qslength;i++){
+        var x = document.getElementById(`problem-${i+1}`);
+        var y = document.getElementById(`probbutt-${i+1}`);
+        x.style.display = "none";
+        if(checked_global[i]==true){
+            y.style.backgroundColor = "#8eff8a";
+        }else{
+            y.style.backgroundColor = "white";
+        }
+        
+    }
+    var x = document.getElementById(`problem-${n}`);
+    x.style.display = "block";
+    var y = document.getElementById(`probbutt-${n}`);
+    y.style.backgroundColor = "#42bcf5";
+    questionstate_global=n;
+    
+}
+
+function goPrev(){
+    if(questionstate_global>1){
+        changeSection(questionstate_global-1);
+    }
+}
+
+function goNext(){
+    if(questionstate_global<qslength){
+        changeSection(questionstate_global+1);
+    }
+}
+
+
+changeSection(questionstate_global)
+
+function handleRadioChange(n){
+    checked_global[n-1]=true;
+}

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.exam.dto.QuestionDTO;
+
 
 
 public class OptionDAO {
@@ -56,5 +58,48 @@ public class OptionDAO {
             disconnect();
            
         }
+    
+    public QuestionDTO getoptions(int qid,String qtext) throws SQLException {
+    	
+    	QuestionDTO qdto = new QuestionDTO();
+    	qdto.setQuestion(qid, qtext);
+        String sql = "select oid,otext from options where qid=?";
+        connect();
+        
+        PreparedStatement statement = conn.prepareStatement(sql); 
+        statement.setInt(1, qid);
+          
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int oid = resultSet.getInt("oid");
+                String otext=resultSet.getString("otext");
+                qdto.addOption(oid, otext);
+            }
+        }
+        statement.close();
+        disconnect();
+        
+        return qdto;
+     }
+    
+    public boolean checkAnswer(int qid,int oid) throws SQLException
+    {
+    	String sql = "select isAns from options where Qid=? and oid=?;";
+        connect();
+        
+        PreparedStatement statement = conn.prepareStatement(sql); 
+        statement.setInt(1, qid);
+        statement.setInt(2, oid);
+        boolean ans=false;
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                ans = resultSet.getBoolean("isAns");
+            }
+        }
+        statement.close();
+        disconnect();
+        return ans;
+        
+    }
     
 }

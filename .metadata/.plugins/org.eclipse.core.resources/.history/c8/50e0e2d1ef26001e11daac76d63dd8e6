@@ -1,0 +1,7 @@
+package com.exam.service;
+
+public class CheckAnswer {
+		public static int check(int qid,int oid) {
+			
+		}
+}

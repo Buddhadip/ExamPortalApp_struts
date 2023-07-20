@@ -1,0 +1,7 @@
+package com.exam.service;
+
+public class AddQuestion {
+	public static final void add(int eid, String qtext, String a,String b, String c, String d, int marks, String correctAns) {
+		s
+	}
+}

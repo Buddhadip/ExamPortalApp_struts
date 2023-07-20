@@ -371,3 +371,14 @@
 0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:25:13 +0530] "GET /ExamWizard/addNewQuestionsPage.do?eid=4 HTTP/1.1" 200 5093
 0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:25:23 +0530] "GET /ExamWizard/submitQuestions.do?eid=4&q_text=rgerg&q-image=&option_a_text=gr&option_a_image=&option_b_text=sg&option_b_image=&option_c_text=ghyyu&option_c_image=&option_d_text=sse0.&option_d_image=&answer=a&marks=1 HTTP/1.1" 302 -
 0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:25:23 +0530] "GET /ExamWizard/addNewQuestionsPage.do?eid=4 HTTP/1.1" 200 5093
+127.0.0.1 - - [19/Jul/2023:17:29:26 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:29:36 +0530] "GET /ExamWizard/submitQuestions.do?eid=4&q_text=arg&q-image=&option_a_text=arg&option_a_image=&option_b_text=arg&option_b_image=&option_c_text=arg&option_c_image=&option_d_text=agr&option_d_image=&answer=b&marks=2 HTTP/1.1" 500 3796
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:31:54 +0530] "GET /ExamWizard/submitQuestions.do?eid=4&q_text=arg&q-image=&option_a_text=arg&option_a_image=&option_b_text=arg&option_b_image=&option_c_text=arg&option_c_image=&option_d_text=agr&option_d_image=&answer=b&marks=2 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:31:54 +0530] "GET /ExamWizard/addNewQuestionsPage.do?eid=4 HTTP/1.1" 200 179
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:31:58 +0530] "GET /ExamWizard/logout.do HTTP/1.1" 200 3600
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:32:00 +0530] "POST /ExamWizard/login.do HTTP/1.1" 200 1717
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:32:01 +0530] "GET /ExamWizard/addExamPage.do HTTP/1.1" 200 10581
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:32:03 +0530] "GET /ExamWizard/addNewQuestionsPage.do?eid=4 HTTP/1.1" 200 5093
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:32:03 +0530] "GET /ExamWizard/public/styles/addQuestions.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:32:13 +0530] "GET /ExamWizard/submitQuestions.do?eid=4&q_text=wethmm&q-image=&option_a_text=mmmj&option_a_image=&option_b_text=hygyum&option_b_image=&option_c_text=hghyu&option_c_image=&option_d_text=juhyuu&option_d_image=&answer=b&marks=1 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [19/Jul/2023:17:32:13 +0530] "GET /ExamWizard/addNewQuestionsPage.do?eid=4 HTTP/1.1" 200 5093

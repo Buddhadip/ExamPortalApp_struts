@@ -23,12 +23,14 @@ public class LoginAction extends Action {
         String userRole = loginDAO.isValidCredentials(username, password);
         String userId=loginDAO.getIdByEmail(username);   
         String uname=loginDAO.getNameByEmail(username);
+        String uroll=loginDAO.getRollByEmail(username);
         if (userRole != null) {
             // Valid role returned
         	HttpSession session = request.getSession();
         	session.setAttribute("username",username);
         	session.setAttribute("uid",userId);
         	session.setAttribute("uname",uname);
+        	session.setAttribute("uroll",uroll);
         	
             if (userRole.equalsIgnoreCase("admin")) {
                 // Perform actions for admin role

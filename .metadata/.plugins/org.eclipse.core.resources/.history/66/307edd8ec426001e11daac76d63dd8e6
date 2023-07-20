@@ -1,0 +1,10 @@
+package com.exam.dto;
+
+public class QuestionDTO {
+	private int qid;
+	private String qtext;
+
+	ArrayList<QuestionDTO> pairList = new ArrayList<>();
+	
+	
+}

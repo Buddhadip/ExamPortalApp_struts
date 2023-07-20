@@ -1,0 +1,30 @@
+package com.exam.dto;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class QuestionDTO {
+	public int qid;
+	public String qtext;
+
+	public ArrayList<OptionDTO> options = new ArrayList<>();
+	
+	public void setQuestion(int qid, String qtext) {
+		this.qid=qid;
+		this.qtext=qtext;
+	}
+	
+	public void addOption(int oid, String otext) {
+		OptionDTO q = new OptionDTO(oid,otext);
+		options.add(q);
+		this.permutate();
+	}
+	public void permutate() {
+		Collections.shuffle(options);  
+	}
+
+	@Override
+	public String toString() {
+		return "QuestionDTO [qid=" + qid + ", qtext=" + qtext + ", options=" + options + "]";
+	}	
+}

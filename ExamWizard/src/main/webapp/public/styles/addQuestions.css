@@ -218,3 +218,39 @@ body{
       text-decoration: none;
       color: inherit;
     }
+    
+    
+    .box2{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      margin:auto;
+      margin-top: 40px;
+      background-color: #6a6aff79;
+      border: 2px solid #6a6aff;
+      border-radius: 10px;
+      padding:2px 20px 20px 20px;
+    }
+    .csv-uploader::file-selector-button {
+      border: 2px solid #e75cd0;
+      padding:5px 10px;
+      border-radius: 0.2em;
+      background-color: #fe9bfb;
+      transition: 1s;  
+      border-radius: 8px; 
+      cursor: pointer; 
+    }
+    .upload-button{
+      border: 2px solid #5cb4e7;
+      padding:5px 10px;
+      border-radius: 0.2em;
+      background-color: #9be5fe;
+      transition: 1s;  
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .box2 h2{
+      text-align: center;
+      color: #5c003a;
+    }

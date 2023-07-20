@@ -129,6 +129,18 @@
         </div>
       </form>
     </div>
+    <div class="box2">
+      <form
+        action="uploadCSV.do"
+        method="post"
+        enctype="multipart/form-data"
+      >
+       <h2>Add bulk questions</h2>
+        <input type="text" value="${eid}" style="display: none;" >
+        <input type="file" class="csv-uploader" name="file" accept=".csv" />
+        <input type="submit" value="Upload csv" class="upload-button" />
+      </form>
+    </div>
     <div id="prev_problems">
       <h2 style="text-align: center">OTHER QUESTIONS</h2>
       <div id="problem-section"></div>

@@ -1,0 +1,10 @@
+package com.exam.dto;
+
+public class QuestionDTO {
+	private int qid;
+	private String qtext;
+	public QuestionDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	ArrayList<QuestionDTO> pairList = new ArrayList<>();
+}

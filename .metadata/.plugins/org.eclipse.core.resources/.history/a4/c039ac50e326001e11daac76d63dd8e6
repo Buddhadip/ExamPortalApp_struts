@@ -1,0 +1,195 @@
+function startCountdown(duration, display) {
+  var timer = duration,
+    minutes,
+    seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      timer = duration;
+    }
+  }, 1000);
+}
+
+const quizData = [
+  {
+    question: "What is the capital of India?",
+    a: "Delhi",
+    b: "Mumbai",
+    c: "Kolkata",
+    d: "Chennai",
+    correct: "a",
+  },
+  {
+    question: "What is the capital of Australia?",
+    a: "Sydney",
+    b: "Melbourne",
+    c: "Canberra",
+    d: "Perth",
+    correct: "c",
+  },
+  {
+    question: "What is the capital of USA?",
+    a: "New York",
+    b: "Washington DC",
+    c: "Los Angeles",
+    d: "Chicago",
+    correct: "b",
+  },
+  {
+    question: "What is the capital of UK?",
+    a: "London",
+    b: "Manchester",
+    c: "Liverpool",
+    d: "Birmingham",
+    correct: "a",
+  },
+  {
+    question: "What is the capital of Canada?",
+    a: "Toronto",
+    b: "Vancouver",
+    c: "Ottawa",
+    d: "Montreal",
+    correct: "c",
+  },
+  {
+    question: "What is the capital of Germany?",
+    a: "Berlin",
+    b: "Munich",
+    c: "Frankfurt",
+    d: "Hamburg",
+    correct: "a",
+  },
+  {
+    question: "What is the capital of China?",
+    a: "Beijing",
+    b: "Shanghai",
+    c: "Guangzhou",
+    d: "Hong Kong",
+    correct: "a",
+  },
+  {
+    question: "What is the capital of Brazil?",
+    a: "Sao Paulo",
+    b: "Rio de Janeiro",
+    c: "Brasilia",
+    d: "Salvador",
+    correct: "c",
+  },
+  {
+    question: "What is the capital of Japan?",
+    a: "Tokyo",
+    b: "Osaka",
+    c: "Kyoto",
+    d: "Nagoya",
+    correct: "a",
+  },
+  {
+    question: "What is the capital of France?",
+    a: "Paris",
+    b: "Marseille",
+    c: "Lyon",
+    d: "Toulouse",
+    correct: "a",
+  },
+];
+
+const quizbutton = document.getElementById("nav-buttons");
+
+var button_html = ``;
+
+for (let i = 0; i < quizData.length; i++) {
+  button_html += ` <button class="roundbutton"  id="probbutt-${i + 1}" onclick="changeSection(${
+    i + 1
+  })" >${i + 1}</button>`;
+}
+quizbutton.innerHTML = button_html;
+
+const quiz = document.getElementById("problem-section");
+var quiz_html = ``;
+
+for (let i = 0; i < quizData.length; i++) {
+    quiz_html += `
+        <div id="problem-${i+1}" style="display: none;"   >
+        <h3>Question ${i+1}</h3>
+        <hr />
+        <div class="question">
+            <p class="qtext"> ${quizData[i].question} </p>
+            <label>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].a}" onchange="handleRadioChange(${i+1})" />
+            <span>${quizData[i].a} </span>
+            </label>
+            <label>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].b}" onchange="handleRadioChange(${i+1})"/>
+            <span>${quizData[i].b} </span>
+            </label>
+            <label>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].c}" onchange="handleRadioChange(${i+1})"/>
+            <span>${quizData[i].c} </span>
+            </label>
+            <label>
+            <input type="radio" name="qs-${i+1}" value="${quizData[i].d}" onchange="handleRadioChange(${i+1})"/>
+            <span>${quizData[i].d} </span>
+            </label>
+        </div>
+        <div class="button-section">
+        <button class="change-button" onclick="goPrev()">Previous</button>
+        <button class="change-button" onclick="goNext()">Next</button>
+      </div>
+        </div>
+  `;
+}
+quiz_html += `<hr/><input type="submit" class="change-button2" />`
+quiz.innerHTML = quiz_html;
+
+var questionstate_global=1;
+var checked_global = [];
+for(let i=0;i<quizData.length;i++){
+    checked_global.push(false);
+}
+
+
+function changeSection(n) {
+    for(let i=0;i<quizData.length;i++){
+        var x = document.getElementById(`problem-${i+1}`);
+        var y = document.getElementById(`probbutt-${i+1}`);
+        x.style.display = "none";
+        if(checked_global[i]==true){
+            y.style.backgroundColor = "#8eff8a";
+        }else{
+            y.style.backgroundColor = "white";
+        }
+        
+    }
+    var x = document.getElementById(`problem-${n}`);
+    x.style.display = "block";
+    var y = document.getElementById(`probbutt-${n}`);
+    y.style.backgroundColor = "#42bcf5";
+    questionstate_global=n;
+    
+}
+
+function goPrev(){
+    if(questionstate_global>1){
+        changeSection(questionstate_global-1);
+    }
+}
+
+function goNext(){
+    if(questionstate_global<quizData.length){
+        changeSection(questionstate_global+1);
+    }
+}
+
+
+changeSection(questionstate_global)
+
+function handleRadioChange(n){
+    checked_global[n-1]=true;
+}

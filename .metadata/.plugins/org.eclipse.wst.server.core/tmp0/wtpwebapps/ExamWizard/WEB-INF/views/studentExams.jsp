@@ -81,6 +81,7 @@
           <div class="button-area">
             <div class="bottom-button">
               <button class="exambutton yellow" id="startexambutton"
+               onclick="window.location.replace('Exampage.do?eid=${exam.eid}')"
                >
                 Start Exam
               </button>

@@ -1,0 +1,11 @@
+package com.exam.service;
+
+import java.util.ArrayList;
+
+import com.exam.dto.QuestionDTO;
+
+public class GetQuestionSet {
+		public static ArrayList<QuestionDTO> getQuestion(int eid){
+			ArrayList<QuestionDTO> examset = new ArrayList<>()
+		}
+}

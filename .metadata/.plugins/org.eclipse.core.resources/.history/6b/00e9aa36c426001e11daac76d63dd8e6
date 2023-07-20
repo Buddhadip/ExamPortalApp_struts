@@ -1,0 +1,8 @@
+package com.exam.dto;
+
+public class OptionDTO {
+	private int oid;
+	private String otext;
+	
+	
+}
