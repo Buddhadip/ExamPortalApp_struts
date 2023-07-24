@@ -1,0 +1,86 @@
+package com.exam.dto;
+
+import java.sql.SQLException;
+
+import com.exam.dao.ExamDAO;
+import com.exam.dao.UserDAO;
+import com.exam.form.ExamForm;
+import com.exam.form.ResultForm;
+import com.exam.form.SignupForm;
+
+public class ResultDTO {
+	private String uname;
+	private String uroll;
+	private String uemail;
+	private String ename;
+	private String submission;
+	private int total;
+	private int score;
+	
+	public ResultDTO(ResultForm r) throws SQLException {
+		ExamDAO edao = new ExamDAO();
+		UserDAO udao = new UserDAO();
+		
+		SignupForm sform = udao.getOneStudent(r.getUserId());
+		ExamForm eform = edao.getExam(Integer.toString(r.getExamId()));
+		
+		this.uname = sform.getUname();
+		this.uroll=sform.getUroll();
+		this.uemail=sform.getEmail();
+		this.ename=eform.getEtitle();
+		this.total=r.getTotalMarks();
+		this.score=r.getScore();
+		
+		
+		
+	}
+	
+	
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public String getUroll() {
+		return uroll;
+	}
+	public void setUroll(String uroll) {
+		this.uroll = uroll;
+	}
+	public String getUemail() {
+		return uemail;
+	}
+	public void setUemail(String uemail) {
+		this.uemail = uemail;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public String getSubmission() {
+		return submission;
+	}
+	public void setSubmission(String submission) {
+		this.submission = submission;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+
+	public String toString() {
+		return "ResultDTO [uname=" + uname + ", ename=" + ename + ", total=" + total + ", score=" + score + "]";
+	}
+}

@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+/* Styling for the table */
+
+h2{
+	text-align:center;
+}
+h4{
+	text-align:center;
+}
+.results-table {
+    width: 80%;
+    margin:auto;
+    border-collapse: collapse;
+    border:1px solid black;
+}
+
+/* Styling for the table headers (th) */
+.results-table th {
+    background-color:  #131e36;
+ /* Blue color */
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling for the table data (td) in even rows */
+.results-table tr:nth-child(even) td {
+    background-color: #abdaff; /* Skublue color */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling for the table data (td) in odd rows */
+.results-table tr:nth-child(odd) td {
+    background-color: white; /* White color */
+    padding: 10px;
+    text-align: center;
+}

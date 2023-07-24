@@ -1,0 +1,9 @@
+package com.exam.dto;
+
+public class NotificationDTO {
+	private String name;
+	private String ename;
+	private int total;
+	private int score;
+	private String time;
+}

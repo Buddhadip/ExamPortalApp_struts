@@ -13,17 +13,19 @@ public class ResultForm extends ActionForm{
 	    private int examId;
 	    private int totalMarks;
 	    private int score;
+	    private String time;
 	    
 	    // Constructors
 	    public ResultForm() {
 	    }
 	    
-	    public ResultForm(int rid, String userId, int examId, int totalMarks, int score) {
+	    public ResultForm(int rid, String userId, int examId, int totalMarks, int score,String time) {
 	        this.rid = rid;
 	        this.userId = userId;
 	        this.examId = examId;
 	        this.totalMarks = totalMarks;
 	        this.score = score;
+	        this.setTime(time);
 	    }
 	    
 	    // Getters and Setters
@@ -66,5 +68,13 @@ public class ResultForm extends ActionForm{
 	    public void setScore(int score) {
 	        this.score = score;
 	    }
+
+		public String getTime() {
+			return time;
+		}
+
+		public void setTime(String time) {
+			this.time = time;
+		}
 }
 

@@ -1,0 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:forEach var="notification" items="${notification}">
+<div class="notification">
+        <div class="text">
+          <div>  <span class="bold">Mainak Deb </span> submmited <span class="bold">DSA exam</span>  at <span class="bold">10:00 pm</span> </div>
+          <div>
+            <span class="bold"> Score:</span> 90
+            <span class="bold"> Total:</span> 100
+          </div>
+        </div>
+        <div class="cross">
+            <button>x</button>
+        </div>
+</div>

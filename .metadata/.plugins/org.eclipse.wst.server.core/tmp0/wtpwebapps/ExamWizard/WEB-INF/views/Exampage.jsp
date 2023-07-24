@@ -6,6 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content=" initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="public/styles/studentHome.css" />
+    <link rel="stylesheet" href="public/styles/studentExams.css" />
     <link rel="stylesheet" href="public/styles/Exampage.css" />
   </head>
   <body>

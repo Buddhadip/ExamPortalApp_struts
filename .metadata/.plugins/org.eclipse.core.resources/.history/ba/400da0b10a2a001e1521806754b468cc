@@ -1,0 +1,14 @@
+$(document).ready(function() {
+            // jQuery equivalent of window.onload
+            $.ajax({
+                url: 'NotificationContent.do',
+                method: 'GET',
+                success: function(data) {
+                    // Replace the content of the "Notification-center" div
+                    $('#Notification-center').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                }
+            });
+});

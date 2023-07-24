@@ -17,7 +17,7 @@
 	 <!-- Header -->
     <header class="header">
       <nav class="nav">
-        <a href="#" class="nav_logo">CodingLab</a>
+        <a href="#" class="nav_logo">Exam Portal</a>
 
         <ul class="nav_items">
           <li class="nav_item">

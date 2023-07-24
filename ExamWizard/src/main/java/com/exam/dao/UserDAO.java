@@ -79,7 +79,6 @@ public class UserDAO {
 	        List<SignupForm> students = new ArrayList<>();
 	        String sql = "SELECT * FROM User";
 	        connect();
-	        System.out.println("here");
 
 	        PreparedStatement statement = conn.prepareStatement(sql);
 	        
@@ -106,6 +105,32 @@ public class UserDAO {
 //	        }
 	    	return students;
 	    }
+	    
+	    
+	    public SignupForm getOneStudent(String uid) throws SQLException {
+	    	
+	    	String sql = "SELECT * FROM User where uid=?";
+	        connect();
+	        SignupForm  newStudent = new SignupForm();
+	        PreparedStatement statement = conn.prepareStatement(sql);
+	        statement.setString(1, uid);
+
+	        ResultSet resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            String uname = resultSet.getString("uname");
+	            String uroll = resultSet.getString("uroll");
+	            String urole = resultSet.getString("urole");
+	            String email = resultSet.getString("emailid");
+
+	            System.out.println(uname);
+	            newStudent = this.makeStudent( uid, uname, uroll, urole, email);
+	        }
+	        resultSet.close();
+	        statement.close();
+	        disconnect();
+	    	return newStudent;
+	    }
+	    
 	    public List<SignupForm> getAllStudentsExcludeAdmin() throws SQLException {
 	        List<SignupForm> students = new ArrayList<>();
 	        String sql = "SELECT * FROM User WHERE urole <> 'Admin'";

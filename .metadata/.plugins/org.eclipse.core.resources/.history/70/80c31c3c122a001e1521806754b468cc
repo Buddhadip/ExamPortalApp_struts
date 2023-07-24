@@ -1,0 +1,17 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:forEach var="notification" items="${notifications}">
+<div class="notification"> 
+        <div class="text">
+          <div>  <span class="bold">${notification.getUname() } </span> submmited 
+          <span class="bold">${notification.getEname()}</span>  at 
+          <span class="bold">${notification.getSubmission()}</span> </div>
+          <div>
+            <span class="bold"> Score:</span> ${notification.getScore()}
+            <span class="bold"> Total:</span> ${notification.getTotal()}
+          </div>
+        </div>
+        <div class="cross">
+            <button onclick=  ${notification.getNid()}>x</button>
+        </div>
+</div>
+ </c:forEach>

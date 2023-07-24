@@ -1,6 +1,7 @@
 package com.exam.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.exam.dao.ExamDAO;
+import com.exam.dao.ExamUserDAO;
 import com.exam.dto.QuestionDTO;
 import com.exam.form.ExamForm;
 import com.exam.service.GetQuestionSet;
@@ -26,12 +28,14 @@ public class ExamPageAction   extends Action {
     		String uid =(String) session.getAttribute("uid");
     		
     		ExamDAO edao = new ExamDAO();
+    		ExamUserDAO eudao = new ExamUserDAO();
     		ExamForm eform = edao.getExam(eid);
-    		if(role.equalsIgnoreCase("student")) {
+    		if(role.equalsIgnoreCase("student") && eudao.isStudentInExam(uid, eid) ) {
     			request.setAttribute("eid", eid);
     			request.setAttribute("ename", eform.getEtitle());
     			request.setAttribute("eduration", eform.getEduration());
     			ArrayList<QuestionDTO> qsSet = GetQuestionSet.getQuestions(eid);
+    			Collections.shuffle(qsSet);
     			request.setAttribute("qsSet",qsSet);
     			return mapping.findForward("success");
     		}

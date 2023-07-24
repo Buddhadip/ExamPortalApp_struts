@@ -43,6 +43,11 @@
               <i class="fa-solid fa-book-open"></i>
               Examination</a>
           </li>
+          <li class="item">
+            <a href="notificationPage.do">
+              <i class="fa-solid fa-bell"></i>
+              Notification</a>
+          </li>
 
           <li class="item">
             <a href="logout.do">

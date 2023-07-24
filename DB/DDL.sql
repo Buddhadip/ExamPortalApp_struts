@@ -34,8 +34,8 @@ CREATE TABLE Question (
 CREATE TABLE QuestionToExam (
     Qid int,
 	Eid Int,
-    FOREIGN KEY (Qid) REFERENCES Question(Qid),
-    FOREIGN KEY (Eid) REFERENCES Exam(Eid)
+    FOREIGN KEY (Qid) REFERENCES Question(Qid)  ON DELETE CASCADE,
+    FOREIGN KEY (Eid) REFERENCES Exam(Eid)  ON DELETE CASCADE
     );
     
     
@@ -60,8 +60,9 @@ CREATE TABLE Results (
     Eid INT,
     RTotal INT,
     RScore INT,
-    FOREIGN KEY (Uid) REFERENCES User(Uid),
-    FOREIGN KEY (Eid) REFERENCES Exam(Eid)
+    SubmissionTime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Uid) REFERENCES User(Uid)  ON DELETE CASCADE,
+    FOREIGN KEY (Eid) REFERENCES Exam(Eid)  ON DELETE CASCADE
 );
 
 -- 7.
@@ -70,18 +71,18 @@ CREATE TABLE Notifications (
     Uid VARCHAR(255),
     Eid INT,
     Rid INT,
-    Timestamp DATETIME,
-    FOREIGN KEY (Uid) REFERENCES User(Uid),
-    FOREIGN KEY (Eid) REFERENCES Exam(Eid),
-    FOREIGN KEY (Rid) REFERENCES Results(Rid)
+    Timestamp DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Uid) REFERENCES User(Uid)  ON DELETE CASCADE,
+    FOREIGN KEY (Eid) REFERENCES Exam(Eid)  ON DELETE CASCADE,
+    FOREIGN KEY (Rid) REFERENCES Results(Rid)  ON DELETE CASCADE
 );
 
 -- 8.
 CREATE TABLE ExamUser (
     eid INT,
     uid VARCHAR(255),
-    FOREIGN KEY (eid) REFERENCES Exam(Eid),
-    FOREIGN KEY (uid) REFERENCES User(Uid)
+    FOREIGN KEY (eid) REFERENCES Exam(Eid)  ON DELETE CASCADE,
+    FOREIGN KEY (uid) REFERENCES User(Uid)  ON DELETE CASCADE
 );
 
 -- 9. Creating Triggers
@@ -140,3 +141,6 @@ select sum(qmarks) as total from questiontoexam join question
 where question.qid=questiontoexam.qid
 and eid=1
 ;
+
+select * from results;
+select * from Notifications;

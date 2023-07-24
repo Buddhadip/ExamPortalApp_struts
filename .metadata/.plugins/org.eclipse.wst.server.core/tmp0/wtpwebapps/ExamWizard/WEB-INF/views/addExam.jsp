@@ -43,7 +43,11 @@
             <i class="fa-solid fa-book-open"></i>
             Examination</a>
         </li>
-
+		<li class="item">
+            <a href="notificationPage.do">
+              <i class="fa-solid fa-bell"></i>
+              Notification</a>
+          </li>
         <li class="item">
           <a href="logout.do">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -129,6 +133,12 @@
               <button class="exambutton" id="${exam.eid}-but" style="background-color: rgba(255, 39, 39, 0.911)"
                 onclick="changeExamCard('${exam.eid}')">
                 Edit Exam
+              </button>
+            </div>
+            <div class="bottom-button"  style="border-top: 2px solid  rgba(0, 0, 0, 0.412);">
+              <button class="exambutton" id="${exam.eid}-but" style="background-color: rgb(193 50 207 / 91%);"
+                onclick="window.location.replace('examResult.do?eid=${exam.eid}')">
+                Exam Result
               </button>
             </div>
           </div>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struts-config>
+<form-beans>
+		<form-bean name="fileUploadForm" type="com.exam.form.FileUploadForm"/>
+		<form-bean name="LoginForm" type="com.exam.form.LoginForm"/>
+	    <form-bean name="SignupForm" type="com.exam.form.SignupForm"/>
+	    <form-bean name="ExamForm" type="com.exam.form.ExamForm"/>
+	    <form-bean name="QuestionSubmitForm" type="com.exam.form.QuestionSubmitForm"/>
+	    <form-bean name="QuestionCsvUploadForm" type="com.exam.form.QuestionCsvUploadForm"/>
+</form-beans>
+ <action-mappings>
+    <action path="/uploadCSV" type="com.exam.action.UploadCsvAction" name="fileUploadForm"
+			validate="true" scope="request">
+			<forward name="success" path="/studentPage.do"/> 
+	</action>
+ </action-mappings>
+ <action-mappings>
+	  <!-- Define the action mapping for LoginAction -->
+			    <action path="/login" type="com.exam.action.LoginAction" name="LoginForm" scope="request" validate="true">
+					<forward name="adminHome" path="/profile.do"/> <!-- Define the forward path for admin -->
+				    <forward name="studHome" path="/profile.do"/> <!-- Define the forward path for user -->
+				    <forward name="loginPage" path="/WEB-INF/views/index.jsp"/> <!-- Define the forward path for login page -->
+			    </action>
+</action-mappings>		    
+ <action-mappings>
+			    <action path="/logout" type="com.exam.action.LogoutAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/index.jsp"/> 
+
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/studentPage" type="com.exam.action.StudentPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/addStudent.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/addExamPage" type="com.exam.action.AddExamPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/addExam.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+
+
+ <action-mappings>
+			    <action path="/profile" type="com.exam.action.ProfilePageAction"  scope="request" >
+					<forward name="adminHome" path="/WEB-INF/views/adminHome.jsp"/> <!-- Define the forward path for admin -->
+				    <forward name="studHome" path="/WEB-INF/views/studentHome.jsp"/> <!-- Define the forward path for user -->
+				    <forward name="loginPage" path="/WEB-INF/views/index.jsp"/> <!-- Define the forward path for login page -->
+			    </action>
+</action-mappings>
+
+ <action-mappings>
+			    <action path="/addUser" type="com.exam.action.AddUserAction"  scope="request" >
+					<forward name="success" path="/studentPage.do"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/deleteStudent" type="com.exam.action.DeleteStudentAction"  scope="request" >
+					<forward name="success" path="/studentPage.do"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+	<action path="/addExam" type="com.exam.action.AddExamAction"  name="ExamForm" scope="request" validate="true">>
+					<forward name="success" path="/addExamPage.do"/> 
+	</action>
+</action-mappings>
+ <action-mappings>
+	<action path="/editExam" type="com.exam.action.EditExamAction"  name="ExamForm" scope="request" validate="true">
+					<forward name="success" path="/addExamPage.do"/> 
+	</action>
+</action-mappings>
+<action-mappings>
+        <action path="/studentForExam" type="com.exam.action.AssignStudentExamPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/assignStudentExam.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/assignStudent" type="com.exam.action.AssignStudentToExamAction"   scope="request" >
+           
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/studentExams" type="com.exam.action.StudentExamsPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/studentExams.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/addNewQuestionsPage" type="com.exam.action.AddNewQuestionsPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/addQuestions.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/submitQuestions" type="com.exam.action.SubmitQuestionAction"   name="QuestionSubmitForm" scope="request" validate="true"  >
+        </action>
+</action-mappings>
+ <action-mappings>
+    <action path="/uploadQuestionCSV" type="com.exam.action.QuestionCsvUploadAction" name="QuestionCsvUploadForm"
+			validate="true" scope="request">
+	</action>
+ </action-mappings>
+<action-mappings>
+        <action path="/Exampage" type="com.exam.action.ExamPageAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/Exampage.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+<action-mappings>
+        <action path="/EvaluateExam" type="com.exam.action.EvaluateExamAction"  scope="request" >
+            <forward name="success" path="/WEB-INF/views/showResult.jsp"/>
+            <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+        </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/examResult" type="com.exam.action.ExamResultPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/ExamResultPage.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/result" type="com.exam.action.StudentResultPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/studentResult.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/deleteQuestion" type="com.exam.action.DeleteQuestionAction"  scope="request" >
+
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/notificationPage" type="com.exam.action.NotificationPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/Notification.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/notificationContent" type="com.exam.action.NotificationAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/NotificationCard.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+</struts-config>
+ 

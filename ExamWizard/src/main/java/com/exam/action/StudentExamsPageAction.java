@@ -28,7 +28,8 @@ public class StudentExamsPageAction  extends Action {
     			ExamDAO edao = new ExamDAO();   
     			ExamUserDAO eudao= new ExamUserDAO();
     			
-;    		    List<ExamForm> onlineExamList=edao.getAllOnlineExam();
+    			
+    		    List<ExamForm> onlineExamList=edao.getAllOnlineExam();
     		    List<ExamForm> notEndedExamList=edao.getAllNotExamExam();
     		    List<String> usersExam = eudao.getExamByStudent(uid);
     		    
@@ -48,7 +49,10 @@ public class StudentExamsPageAction  extends Action {
     		    		NotEndedExams.add(exam);
     		    	}
     		    }
-    		    for(ExamForm exam: notEndedExamList) {
+    		    
+    		    System.out.println("Not ended exams= "+NotEndedExams);
+    		    
+    		    for(ExamForm exam: NotEndedExams) {
     		    	if(!startedExams.contains(exam)) {
     		    		NotStartedExams.add(exam);
     		    	}
@@ -66,7 +70,7 @@ public class StudentExamsPageAction  extends Action {
     		    
 //    		    System.out.println(onlineExamList);
 //    		    System.out.println(notEndedExamList);
-//    		    System.out.println(usersExam);
+    		    System.out.println(usersExam);
     		    
     		    request.setAttribute("startedExams", startedExams);
     		    request.setAttribute("NotStartedExams", NotStartedExams);

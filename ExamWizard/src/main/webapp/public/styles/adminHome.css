@@ -125,7 +125,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: auto;
+  min-height: 100vh;
   z-index: 100;
   background: #e7f2fd;
   flex-direction:column;

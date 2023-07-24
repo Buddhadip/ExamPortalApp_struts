@@ -190,14 +190,15 @@
 	            </label>
 	        </div>
 	        <div class="button-section">
-	        <button class="change-button2" id="delete-button"  > Delete </button>
+	        <button class="change-button2" id="delete-button" onclick="deleteQuestion(${question.getQid()})" > Delete </button>
 	      </div>
 	      <hr />
 	      </div>
 	    </c:forEach>
       </div>
     </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript"   src="public/js/addQuestions.js" ></script>
     
 </body>
 </html>

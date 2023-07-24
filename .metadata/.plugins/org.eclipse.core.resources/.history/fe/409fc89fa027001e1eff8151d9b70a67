@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+/* Styling for the table */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Styling for the table headers (th) */
+.results-table th {
+    background-color: #007BFF; /* Blue color */
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling for the table data (td) in even rows */
+.results-table tr:nth-child(even) td {
+    background-color: #5EB8FF; /* Skublue color */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling for the table data (td) in odd rows */
+.results-table tr:nth-child(odd) td {
+    background-color: white; /* White color */
+    padding: 10px;
+    text-align: center;
+}

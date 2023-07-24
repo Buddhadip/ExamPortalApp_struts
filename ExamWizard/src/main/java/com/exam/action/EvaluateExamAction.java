@@ -11,8 +11,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.exam.dao.ExamUserDAO;
+import com.exam.dao.NotificationDAO;
 import com.exam.dao.QuestionDAO;
 import com.exam.dao.ResultDAO;
+import com.exam.form.NotificationForm;
 import com.exam.service.CheckAnswer;
 
 public class EvaluateExamAction extends Action {
@@ -42,8 +45,16 @@ public class EvaluateExamAction extends Action {
         request.setAttribute("score", point);
         
         ResultDAO rdao = new ResultDAO();
-        rdao.insertResult(uid, eid, total, point);
-
+        int rid = rdao.insertResult(uid, eid, total, point);
+        
+        NotificationDAO ndao = new NotificationDAO();
+        NotificationForm nform = new NotificationForm(uid, eid, rid); 
+        System.out.println(nform);
+        ndao.createNotificationForm(nform);
+        
+        
+        ExamUserDAO eudao = new ExamUserDAO();
+        eudao.deleteOneStdent(uid,Integer.toString(eid));
         return mapping.findForward("success");
     }
 }

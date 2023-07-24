@@ -67,7 +67,7 @@ public class QuestionDAO {
    
     
     // Method to delete a question from the "Question" table based on the question ID
-    public void deleteQuestion(int questionId) throws SQLException {
+    public boolean deleteQuestion(int questionId) throws SQLException {
         String sql = "DELETE FROM Question WHERE Qid = ?";
         	connect();
         	PreparedStatement statement = conn.prepareStatement(sql);
@@ -77,6 +77,7 @@ public class QuestionDAO {
             
             statement.close();
             disconnect();
+            return true;
         }
     
     

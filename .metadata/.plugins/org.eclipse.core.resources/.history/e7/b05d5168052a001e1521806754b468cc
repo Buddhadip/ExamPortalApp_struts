@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+
+ function deleteQuestion(id){
+	 
+	 console.log(id)
+ }

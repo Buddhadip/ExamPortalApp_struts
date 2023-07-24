@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+
+ function deleteQuestion(id){
+	 
+	 console.log(id);
+	 data= {
+		  "qid":id,
+	  }
+  $.ajax({
+      url: "assignStudent.do",
+      type: "POST",
+      data:JSON.stringify(data),
+      success: function(response) {
+        window.location.replace("addExamPage.do");
+      },
+      error: function(xhr, status, error) {
+        // Handle the error
+        alert("Error updating students to exam");
+      }
+    });
+ }

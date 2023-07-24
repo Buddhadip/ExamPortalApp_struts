@@ -1,0 +1,23 @@
+package com.exam.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import com.exam.dao.NotificationDAO;
+import com.exam.dao.QuestionDAO;
+
+public class DeleteNotificationAction  extends Action {
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	
+    	int qid=Integer.parseInt(request.getParameter("nid"))  ;
+    	NotificationDAO ndao = new NotificationDAO();
+    	ndao.deleteNotificationForm(qid);
+        return mapping.findForward("success");
+    }
+}

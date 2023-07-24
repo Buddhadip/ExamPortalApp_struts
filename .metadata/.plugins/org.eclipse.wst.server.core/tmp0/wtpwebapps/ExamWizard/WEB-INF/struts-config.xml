@@ -114,5 +114,40 @@
             <forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
         </action>
 </action-mappings>
+ <action-mappings>
+			    <action path="/examResult" type="com.exam.action.ExamResultPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/ExamResultPage.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/result" type="com.exam.action.StudentResultPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/studentResult.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/deleteQuestion" type="com.exam.action.DeleteQuestionAction"  scope="request" >
+
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/notificationPage" type="com.exam.action.NotificationPageAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/Notification.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/notificationContent" type="com.exam.action.NotificationAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/NotificationCards.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
+ <action-mappings>
+			    <action path="/deleteNotification" type="com.exam.action.DeleteNotificationAction"  scope="request" >
+					<forward name="success" path="/WEB-INF/views/NotificationCards.jsp"/> 
+					<forward name="failure" path="/WEB-INF/views/NoAccess.jsp"/> 
+			    </action>
+</action-mappings>
 </struts-config>
  

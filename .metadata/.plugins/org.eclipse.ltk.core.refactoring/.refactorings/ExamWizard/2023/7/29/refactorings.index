@@ -1,3 +1,4 @@
 1689662692776	Rename type 'AssignStudentExamAction'
 1689759783472	Rename resource 'studentExam.js'
 1689841055252	Encapsulate field 'eid'
+1689925862773	Encapsulate field 'time'

@@ -1,0 +1,111 @@
+package com.exam.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.exam.form.ResultForm;
+
+//import com.exam.forms.LoginForm;
+
+
+public class ResultDAO {
+
+    private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+
+    public ResultDAO() {
+        this.jdbcURL = "jdbc:mysql://localhost:3306/exam_master";
+        this.jdbcUsername = "root";
+        this.jdbcPassword = "root";
+    }
+
+    // Establishes a database connection
+    protected void connect() throws SQLException {
+        if (conn == null || conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+    }
+
+    // Closes the database connection
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+    }
+//Method to insert a new result into the "Results" table
+public void insertResult(String userId, int examId, int totalMarks, int score) throws SQLException {
+    
+	connect();
+	String sql = "INSERT INTO Results (Uid, Eid, RTotal, RScore) VALUES (?, ?, ?, ?)";
+    
+    PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, userId);
+        statement.setInt(2, examId);
+        statement.setInt(3, totalMarks);
+        statement.setInt(4, score);
+        
+        statement.executeUpdate();
+        
+        statement.close();
+        disconnect();
+    
+}
+
+// Method to retrieve a result record from the "Results" table based on the resultId
+public ResultForm getResultByUid(String uid) throws SQLException {
+	ResultForm result = null;
+    String sql = "SELECT * FROM Results WHERE uid = ?";
+    
+    PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, uid);
+        
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                int rid = resultSet.getInt("Rid");
+                int examId = resultSet.getInt("Eid");
+                int totalMarks = resultSet.getInt("RTotal");
+                int score = resultSet.getInt("RScore");
+                
+                result = new ResultForm(rid, uid, examId, totalMarks, score);
+            }
+      }
+    
+        statement.close();
+        disconnect();
+    return result;
+}
+public ResultForm getResultByEid(String uid) throws SQLException {
+	ResultForm result = null;
+    String sql = "SELECT * FROM Results WHERE eid = ?";
+    
+    PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, uid);
+        
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                int rid = resultSet.getInt("Rid");
+                int examId = resultSet.getInt("Eid");
+                int totalMarks = resultSet.getInt("RTotal");
+                int score = resultSet.getInt("RScore");
+                
+                result = new ResultForm(rid, uid, examId, totalMarks, score);
+            }
+      }
+    
+        statement.close();
+        disconnect();
+    return result;
+
+}
+
+}

@@ -10,6 +10,9 @@ function startCountdown(duration, display) {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     display.textContent = minutes + ":" + seconds;
+    if(timer==1){
+		 document.getElementById('problem-section').submit();
+	}
 
     if (--timer < 0) {
       timer = duration;

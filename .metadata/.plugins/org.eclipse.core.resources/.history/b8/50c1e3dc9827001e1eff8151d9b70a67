@@ -1,0 +1,12 @@
+package com.exam.dto;
+
+public class ResultDTO {
+	private String uname;
+	private String uroll;
+	private String uemail;
+	private String rmarks;
+	private String ename;
+	private String submission;
+	private int total;
+	private int score;
+}

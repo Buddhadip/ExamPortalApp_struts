@@ -77,6 +77,28 @@ public class ExamUserDAO {
 	        return exams;
 	    }
 	    
+	    public boolean isStudentInExam(String uid,String eid) throws SQLException {
+	        List<String> students = new ArrayList<>();
+
+	        connect();
+	        String query = "SELECT uid FROM ExamUser where eid="+eid;
+	        System.out.println(query);
+	        Statement statement = conn.createStatement();
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            String id = resultSet.getString("uid");
+	            students.add(id);
+	        }
+	        disconnect();
+	        if(students.contains(uid)) {
+	        	return true;
+	        }else {
+	        	return false;
+	        }
+
+	    }
+	    
 	    
 	    
 	    public void deleteStudents(String eid) throws SQLException {
@@ -87,6 +109,15 @@ public class ExamUserDAO {
 	        preparedStatement.close();
 	        disconnect();
 	    }
+	    public void deleteOneStdent(String uid,String eid) throws SQLException {
+	    	connect();
+	        String deleteQuery="Delete from ExamUser where uid='"+uid+"' and eid="+eid;
+	        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+	        preparedStatement.executeUpdate();
+	        preparedStatement.close();
+	        disconnect();
+	    }
+	    
 	    public void insertStudentExam(String eid, String uid) throws SQLException {
 	        connect();
 	        String query = "INSERT INTO ExamUser (eid,uid) VALUES ( ?, ?)";

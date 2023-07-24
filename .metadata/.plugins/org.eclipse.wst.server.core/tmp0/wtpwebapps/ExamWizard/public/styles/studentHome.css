@@ -128,14 +128,14 @@ body{
   display: flex;
 
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 100;
   background: #e7f2fd;
   z-index: 100;
   overflow-y:scroll;
   background: #e7f2fd;
   flex-wrap:wrap;
-  padding-top:50px;
+  padding-top:200px;
 }
 .main h1 {
   color: #11101d;
